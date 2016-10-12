@@ -100,16 +100,21 @@ def parcoursEnLargeur(n):
     
 def parcoursEnLargeurRec(collection, i, n):
     nouvelleCollection = []
+    #parcourt la collection des solutions partielles
     for L in collection:
+        #pour chaque solution partielle, vérifie si l'ajout d'une reine marche toujours
         for j in range(n):
             print(L)
             L.append(j)
             if test2(L, i + 1, i):
+                #Si l'ajout d'une reine marche, l'ajoute a la collection
                 print(L, i)
                 nouvelleCollection.append( list(L) )
             L.pop(i)
+    #Si on n'est pas encore à la dernière ligne, ajoute une nouvelle reine
     if i < n-1:
         return parcoursEnLargeurRec(nouvelleCollection, i+1, n) 
+    #Sinon, enregistre toute les solutions
     for L in nouvelleCollection:
         enregistre(L, n)
     return len( nouvelleCollection )
