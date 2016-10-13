@@ -7,44 +7,7 @@ class Fonctions:
     
     ''' classe de fonctions statiques pour calculer les solutions '''
     
-    #je vais retravailler ces deux fonctions, je ne les commente pas tout de suite
-    def parcoursEnProfondeur(n):
-        listePermutation=np.zeros(n)
-        a = parcoursEnProfondeurRec(listePermutation,0,n)
-        if a:
-           enregistre(listePermutation)
-        
-            
     
-    
-    def parcoursEnProfondeurRec(listePermutation,i,n):
-        c=0
-        for j in range(int(listePermutation[i]),n):
-            #pour arreter la récursion
-            if c==1:
-                return 1    
-            #print(listePermutation,i,j)
-            #teste si la reine menace une autre reine
-            if j in listePermutation[0:i] or j - i in listePermutation[0:i] - np.linspace(0,i-1,i) or j - (n - i - 1) in listePermutation[0:i] - np.linspace(n-1,n-i,i):
-                #si oui, déplace la reine vers la droite           
-                continue
-            #sinon, passe à la ligne suivante
-            else :
-                listePermutation[i] = j
-                if i < n-1:
-                    c = parcoursEnProfondeurRec(listePermutation,i+1,n)
-                #s'arrete si on a parcouru toute les lignes
-                else :
-                    return 1
-        #si une reine ne peut pas se placer sur une ligne, revient à la ligne précédente
-        if c==1:
-            return 1    
-        if i > 0:
-            listePermutation[i] = 0
-        else :
-            return 0
-        
-
     def enregistre(listePermutation,n):
         '''Enregistre la solution dans un fichier texte
         - listePermutation : permutation à afficher
@@ -81,9 +44,58 @@ class Fonctions:
         - n : taille de l'échiquier
         - i : ligne à vérifier'''
         for j in range(n):
-            if  j!=i and abs(j - i) == abs(abs(listePermutation[j])-abs(listePermutation[i])):
+            if  j!=i and ( L[j] == L[i] or abs(j - i) == abs(abs(L[j])-abs(L[i])) ):
                 return False
         return True
+    
+    def parcoursEnProfondeur(n):
+        L = np.zeros(n)
+        print( parcoursEnProfondeurRec(L, 0, n, 0) )
+    
+    
+    def parcoursEnProfondeurRec(L, i, n, compteur):
+        for j in range(n):
+            L[i] = j
+            if not test2(L, i + 1, i): 
+                #si oui, déplace la reine vers la droite           
+                continue
+            #sinon, passe à la ligne suivante
+            else :
+                if i < n - 1:
+                    compteur = parcoursEnProfondeurRec(L, i + 1, n, compteur)
+                #enregistre la solution car on a parcouru toute les lignes
+                else :
+                    enregistre(L, n)
+                    compteur += 1
+        #si une reine ne peut pas se placer sur une ligne, revient à la ligne précédente
+        return compteur
+        
+        
+    def parcoursEnLargeur(n):
+        print( parcoursEnLargeurRec([[]], 0, n) )
+        
+    def parcoursEnLargeurRec(collection, i, n):
+        nouvelleCollection = []
+        #parcourt la collection des solutions partielles
+        for L in collection:
+            #pour chaque solution partielle, vérifie si l'ajout d'une reine marche toujours
+            for j in range(n):
+                print(L)
+                L.append(j)
+                if test2(L, i + 1, i):
+                    #Si l'ajout d'une reine marche, l'ajoute a la collection
+                    print(L, i)
+                    nouvelleCollection.append( list(L) )
+                L.pop(i)
+        #Si on n'est pas encore à la dernière ligne, ajoute une nouvelle reine
+        if i < n-1:
+            return parcoursEnLargeurRec(nouvelleCollection, i+1, n) 
+        #Sinon, enregistre toute les solutions
+        for L in nouvelleCollection:
+            enregistre(L, n)
+        return len( nouvelleCollection )
+            
+
         
     def nextPermutationSJT(listePermutation,n):
         ''' pour une permutation donnée, calcule la permutation suivante selon l'algorithme de Steinhaus–Johnson–Trotter.
