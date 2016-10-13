@@ -11,7 +11,7 @@ class Fonctions:
     def enregistre(listePermutation,n):
         '''Enregistre la solution dans un fichier texte
         - listePermutation : permutation à afficher
-        - n : taille de l'échiquier'''
+        - n : taille de l'échiquier '''
         # pour l'instant, l'affiche
         G = np.zeros(n)
         # copie la solution
@@ -31,29 +31,36 @@ class Fonctions:
         ''' vérifie que la permutation est solution
         - listePermutation : permutation à vérifier
         - n : taille de l'échiquier
-        - i : ligne à vérifier'''
+        - i : ligne à vérifier '''
         for i in range(n-1):
             for j in range(i+1,n):
                 if  j!=i and abs(j - i) == abs(abs(listePermutation[j])-abs(listePermutation[i])):
                     return False
         return True
         
-    def test2(listePermutation,n,i):
+    def test2(listePermutation,n,i): # la fonction marche marche aussi si on a pas une permutation
         ''' teste les conflits d'une permutation sur la i-ème ligne 
         - listePermutation : permutation à vérifier
         - n : taille de l'échiquier
-        - i : ligne à vérifier'''
+        - i : ligne à vérifier '''
         for j in range(n):
             if  j!=i and ( L[j] == L[i] or abs(j - i) == abs(abs(L[j])-abs(L[i])) ):
                 return False
         return True
     
     def parcoursEnProfondeur(n):
+        ''' parcourt le graphe en profondeur pour chercher les solutions
+        - n : taille de l'échiquier '''
         L = np.zeros(n)
         print( parcoursEnProfondeurRec(L, 0, n, 0) )
     
     
     def parcoursEnProfondeurRec(L, i, n, compteur):
+        ''' fonction récursive pour le parcours en profondeur
+        - L : solution partielle étudiée
+        - i : nombre de ligne déjà remplies à l'entrée de la fonction
+        - n : taille de l'échiquier
+        - compteur : compte le nombre de solutions '''
         for j in range(n):
             L[i] = j
             if not test2(L, i + 1, i): 
@@ -72,9 +79,15 @@ class Fonctions:
         
         
     def parcoursEnLargeur(n):
+        ''' parcourt le graphe en largeur pour chercher les solutions
+        - n : taille de l'échiquier '''
         print( parcoursEnLargeurRec([[]], 0, n) )
         
     def parcoursEnLargeurRec(collection, i, n):
+        ''' fonction récursive pour le parcours en largeur
+        - collection : liste de solutions partielles 
+        - i : nombre de ligne déjà remplies à l'entrée de la fonction 
+        - n : taille de l'échiquier '''
         nouvelleCollection = []
         #parcourt la collection des solutions partielles
         for L in collection:
@@ -101,7 +114,7 @@ class Fonctions:
         ''' pour une permutation donnée, calcule la permutation suivante selon l'algorithme de Steinhaus–Johnson–Trotter.
         Il faut que la direction soit précisée (nombre positif: direction vers la gauche, nombre négatif: direction vers la droite) 
         - listePermutation : permutation actuelle
-        - n : taille de l'échiquier'''
+        - n : taille de l'échiquier '''
         #cherche le plus grand élément, 
         for j in range(n-1,-1,-1): 
             for i in range(n):
