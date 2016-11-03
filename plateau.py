@@ -79,7 +79,7 @@ class Plateau(Frame):
 		self.bouton_suivant.destroy()
 		self.initialize()
 fenetre = Tk()
-N_REINES = 8
-vecteur_position = [[1, 2, 4, 7, 8, 6, 3, 5],[1, 2, 3, 4, 5, 6, 7, 8],[3, 4, 5, 6, 1, 8, 2, 7]]
+N_REINES = 4
+vecteur_position = [[1, 2, 4, 3],[1, 2, 3, 4],[3, 4, 1, 2]] #[[1, 2, 4, 7, 8, 6, 3, 5],[1, 2, 3, 4, 5, 6, 7, 8],[3, 4, 5, 6, 1, 8, 2, 7]]
 a2 = Plateau(fenetre,N_REINES,vecteur_position)
 a2.mainloop()
