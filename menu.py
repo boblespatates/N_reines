@@ -23,10 +23,6 @@ class Menu(Frame):
 		# Spinbox pour N_REINES
 		self.spinbox()
 			
-		# Pour la lisibilite du menu
-		label_espace = Label(self, text=' ')
-                label_espace.pack()
-		
 		# Radios bouttons pour ALGORITHME
 		self.radio_boutton()
 		
@@ -38,27 +34,32 @@ class Menu(Frame):
 		le nombre de reines '''
 		
 		label1 = Label(self, text='Choix de N', font=('Arial 13'))
-                label1.pack()
+                label1.grid(row=1,column=1,columnspan=2)
                 self.spinbox1 = Spinbox(self, from_=4, to=50, textvariable=Number)
-                self.spinbox1.pack()
+                self.spinbox1.grid(row=2,column=1,columnspan=2)
 		
 	def radio_boutton(self):
 		''' Cree des radiobouttons
 		pour le choix de l'algo '''
 
 		label2 = Label(self, text='Choix de l algorithme', font=('Arial 13'))
-                label2.pack()
+                label2.grid(row=4,column=1,columnspan=2)
+		
+		i=1
                 for algo in ['Force Brute', 'Force Brute plus',
                  'Parcours en profondeur', 'Parcours en largeur']:
                         rb = Radiobutton(self, text=algo, value=algo, variable=Algorithme)
-                        rb.pack(side=LEFT)
-	
+                        if i<=2:
+				rb.grid(row=5,column=i)
+			else:
+				rb.grid(row=6,column=i-2)
+			i += 1
 	def boutton(self):
 		''' Cree un boutton pour
 		fermer la fenetre '''
 
 		self.bouton_valider = Button(self, text="Valider", command=self.valider)
-                self.bouton_valider.pack(side=BOTTOM)	
+                self.bouton_valider.grid(row=7,column=1,columnspan=2)
 
 	
 	def valider(self):
