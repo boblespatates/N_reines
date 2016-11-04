@@ -13,7 +13,7 @@ def enregistre( listePermutation, n ):
     '''Enregistre la solution dans un fichier texte
     - listePermutation : permutation à afficher
     - n : taille de l'échiquier '''
-    # pour l'instant, l'affiche
+    '''# pour l'instant, l'affiche
     G = np.zeros( n )
     # copie la solution
     for i in range( n ):
@@ -25,7 +25,7 @@ def enregistre( listePermutation, n ):
     for i in range(n):
         p = 2 * int( G[i] )
         print( B[:p] + "☺" + B[p:] )
-    print( "*************************************************" )
+    print( "*************************************************" )'''
 
 
     
@@ -54,7 +54,7 @@ def test2( listePermutation, n, i ): # la fonction marche aussi si on a pas une 
 
 
 
-def parcoursEnProfondeurRec(listePermutation, i, n, compteur):
+def parcoursEnProfondeurRec(listePermutation, i, n):
     ''' fonction récursive pour le parcours en profondeur
     - listePermutation : solution partielle étudiée
     - i : nombre de ligne déjà remplies à l'entrée de la fonction
@@ -68,53 +68,50 @@ def parcoursEnProfondeurRec(listePermutation, i, n, compteur):
         #sinon, passe à la ligne suivante
         else :
             if i < n - 1:
-                compteur = parcoursEnProfondeurRec( listePermutation, i + 1, n, compteur )
+                parcoursEnProfondeurRec( listePermutation, i + 1, n)
             #enregistre la solution car on a parcouru toute les lignes
             else :
-                enregistre( listePermutation, n )
-                compteur += 1
+                listeSolution.append(listePermutation)
     #si une reine ne peut pas se placer sur une ligne, revient à la ligne précédente
-    return compteur
+    return listeSolution
     
     
 
 def parcoursEnProfondeur( n ):
     ''' parcourt le graphe en profondeur pour chercher les solutions
     - n : taille de l'échiquier '''
-    L = np.zeros( n )
-    print( parcoursEnProfondeurRec( L, 0, n, 0 ) )
+    listePermutation = np.zeros( n )
+    return( parcoursEnProfondeurRec( listePermutation, 0, n) )
 
     
     
-def parcoursEnLargeurRec( collection, i, n ):
+def parcoursEnLargeurRec( listeSolution, i, n ):
     ''' fonction récursive pour le parcours en largeur
     - collection : liste de solutions partielles 
     - i : nombre de ligne déjà remplies à l'entrée de la fonction 
     - n : taille de l'échiquier '''
-    nouvelleCollection = []
+    nouvelleListeSolution = []
     #parcourt la collection des solutions partielles
-    for L in collection:
+    for L in listeSolution:
         #pour chaque solution partielle, vérifie si l'ajout d'une reine marche toujours
         for j in range( n ):
             L.append( j )
             if test2( L, i + 1, i ):
                 #Si l'ajout d'une reine marche, l'ajoute a la collection
-                nouvelleCollection.append( list(L) )
+                nouvelleListeSolution.append( list(L) )
             L.pop(i)
     #Si on n'est pas encore à la dernière ligne, ajoute une nouvelle reine
     if i < n - 1:
-        return parcoursEnLargeurRec( nouvelleCollection, i + 1, n ) 
-    #Sinon, enregistre toute les solutions
-    for L in nouvelleCollection:
-        enregistre( L , n )
-    return len( nouvelleCollection )
+        return parcoursEnLargeurRec( nouvelleListeSolution, i + 1, n ) 
+
+    return listeSolution
 
 
     
 def parcoursEnLargeur(n):
     ''' parcourt le graphe en largeur pour chercher les solutions
     - n : taille de l'échiquier '''
-    print( parcoursEnLargeurRec( [[]], 0, n ) )
+    return( parcoursEnLargeurRec( [[]], 0, n ) )
     
         
     
@@ -145,13 +142,13 @@ def nextPermutationSJT(listePermutation, n):
 def forceBrute(n):
     ''' parcourt les permutations, vérifie si elles sont solutions
     - n : taille de l'échiquier '''
-    # variable testant si l'algorithme de permutations est arrivé à terme (True: l'algorithme n'est pas terminé, False: toutes les      permutations ont été parcourues
+    listePermutation = []
+    # variable testant si l'algorithme de permutations est arrivé à terme (True: l'algorithme n'est pas terminé, False: toutes les permutations ont été parcourues
     isPermutation = True
     #initialise la première permutation
     listePermutation = np.linspace( 0, n - 1, n )
-    compteur = 0
     if test( listePermutation, n ):
-        enregistre( listePermutation, n )
+        listeSolution.append(listePermutation)
     #parcourt les permutations
     while isPermutation:
         #calcul de la permutation suivante
@@ -159,12 +156,9 @@ def forceBrute(n):
         isPermutation = resultat[0]
         # si la permutation est solution, l'enregistre
         if isPermutation and test( listePermutation, n ):
-            compteur += 1
-            #enregistre( listePermutation, n )
-	    print(listePermutation)    
-
+                listeSolution.append(listePermutation)
     #affiche le nombre de solutions
-    #print( compteur )
+    return(listeSolution)
     
     
 def miseAJourCollisions( listePermutation, i, j, matriceCollision, n ):
@@ -201,15 +195,15 @@ def miseAJourCollisions( listePermutation, i, j, matriceCollision, n ):
 def forceBruteAmelioree( n ):
     ''' même principe que force brute, retient la matrice des collisions pour une verication plus rapide de la permutation (la permutation suivante différant seulement d'une transposition)
     - n : taille de l'échiquier '''
+    listeSolution = []
     # variable testant si l'algorithme de permutations est arrivé à terme (True: l'algorithme n'est pas terminé, False: toutes les      permutations ont été parcourues
     isPermutation = True
     #matrice de coillision : la i-ème ligne ou colonne correspond à la i-ème dame. A_ij = 1 si les dames i et j sont en collison, 0 sinon.
     matriceCollision = np.ones( ( n, n ) )
     #initialise la première permutation
     listePermutation = np.linspace( 0, n - 1, n )
-    compteur = 0
     if test( listePermutation, n ):
-        enregistre( listePermutation, n )
+        listeSolution.append(listePermutation)
     #parcourt les permutations
     while isPermutation:
         #calcul de la permutation suivante
@@ -217,8 +211,7 @@ def forceBruteAmelioree( n ):
         isPermutation = resultat[0]
         # si la permutation est solution, l'enregistre
         if miseAJourCollisions( listePermutation, resultat[1], resultat[2], matriceCollision, n ):
-            compteur += 1
-            enregistre( listePermutation, n )
+            listeSolution.append(listePermutation)
     #affiche le nombre de solutions
-    print( compteur )
+    return(listeSolution)
                 
