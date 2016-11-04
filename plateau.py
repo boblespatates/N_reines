@@ -36,15 +36,18 @@ class Plateau(Frame):
 		DIM_CASE = 50
 		x0,y0 = 1,1
 		for i in range(N_REINES+1):
-			self.canvas.create_line(x0+DIM_CASE*i, y0,x0+DIM_CASE*i,y0 + N_REINES*DIM_CASE)
-        		self.canvas.create_line(x0, y0+DIM_CASE*i,x0+N_REINES*DIM_CASE ,y0+DIM_CASE*i)
+			coordonees_colonne = [x0+DIM_CASE*i,y0,x0+DIM_CASE*i,y0 + N_REINES*DIM_CASE]
+			coordonees_ligne = [x0,y0+DIM_CASE*i,x0+N_REINES*DIM_CASE,y0+DIM_CASE*i]
+			self.canvas.create_line(coordonees_colonne)
+        		self.canvas.create_line(coordonees_ligne)
 		
 		# Place les pions
 		n = 0
 		x0,y0 = 4,4
 		x1,y1 = 49,49
 		for i in vecteur_position:
-			coordonees = [x0+DIM_CASE*n, y0+DIM_CASE*(i-1),x1+DIM_CASE*n,y1+DIM_CASE*(i-1)]
+			temps = DIM_CASE*(i-1)
+			coordonees = [x0+DIM_CASE*n,y0+temps,x1+DIM_CASE*n,y1+temps]
 			self.canvas.create_oval(coordonees,fill='black',outline='white')
 			n += 1	
 		

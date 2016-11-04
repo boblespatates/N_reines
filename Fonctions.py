@@ -160,9 +160,11 @@ def forceBrute(n):
         # si la permutation est solution, l'enregistre
         if isPermutation and test( listePermutation, n ):
             compteur += 1
-            enregistre( listePermutation, n )
+            #enregistre( listePermutation, n )
+	    print(listePermutation)    
+
     #affiche le nombre de solutions
-    print( compteur )
+    #print( compteur )
     
     
 def miseAJourCollisions( listePermutation, i, j, matriceCollision, n ):

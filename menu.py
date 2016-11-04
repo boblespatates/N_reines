@@ -3,7 +3,8 @@
 
 from Tkinter import *
 
-import Fonctions
+import Fonctions as fc
+import plateau as pl
 
 class Menu(Frame):
 	''' Classe definissant un menu
@@ -56,6 +57,7 @@ class Menu(Frame):
 			else:
 				rb.grid(row=6,column=i-2)
 			i += 1
+
 	def boutton(self):
 		''' Cree un boutton pour
 		fermer la fenetre '''
@@ -65,26 +67,30 @@ class Menu(Frame):
 
 	
 	def valider(self):
-		''' Recupere les donnees et ferme la fenetre '''
+		''' Recupere les donnees,
+		appel l'algorithme
+		 et ferme la fenetre '''
 
 		self.ALGORITHME = Algorithme.get()
 		self.N_REINES = Number.get()
-		print(self.N_REINES)
-		print(self.ALGORITHME)
-                if ( self.ALGORITHME == 'Force Brute'):
-                    ForceBrute(self.N_REINES)
+                
+		# Appelle le bon algorithme
+		if ( self.ALGORITHME == 'Force Brute'):
+                    self.matriceSolution = fc.forceBrute(self.N_REINES)
                 if ( self.ALGORITHME == 'Force Brute plus'):
-                    ForceBruteAmelioree(self.N_REINES)
+                    self.matriceSoultion = fc.forceBruteAmelioree(self.N_REINES)
                 if ( self.ALGORITHME == 'Parcours en profondeur'):
-                    ParcoursEnProfondeur(self.N_REINES)             
+                    self.matriceSolution = fc.parcoursEnProfondeur(self.N_REINES)             
                 if ( self.ALGORITHME == 'Parcours en largeur'):
-                    ParcoursEnLargeur(self.N_REINES)		
-                self.destroy()
+                    self.matriceSolution = fc.parcoursEnLargeur(self.N_REINES)		
+               
+		self.destroy()
 
 fenetre = Tk()
 Number = IntVar()
 Algorithme = StringVar()
 a1 = Menu(fenetre)
 a1.mainloop()
-print(a1.N_REINES)
-print(a1.ALGORITHME)
+a2 = Plateau(fenetre,a1.N_REINES,a1.matriceSolution)
+a2.mainloop()
+
