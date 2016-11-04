@@ -15,6 +15,7 @@ class Plateau(Frame):
 		self.pack(fill=BOTH)
 		self.solution = 0
 		self.matrice_solution = matrice_solution
+		self.N_REINES = N_REINES
 		self.initialize()
 	
 	def initialize(self):
@@ -22,7 +23,7 @@ class Plateau(Frame):
 		ses differentes composantes '''	
 		
 		# La grille 
-		self.grille(N_REINES,self.matrice_solution[self.solution])	
+		self.grille(self.N_REINES,self.matrice_solution[self.solution])	
 		# Le bouton suivant
 		self.boutton_suivant()
 			
@@ -81,8 +82,3 @@ class Plateau(Frame):
 		self.canvas.destroy()
 		self.bouton_suivant.destroy()
 		self.initialize()
-fenetre = Tk()
-N_REINES = 4
-vecteur_position = [[1, 2, 4, 3],[1, 2, 3, 4],[3, 4, 1, 2]] #[[1, 2, 4, 7, 8, 6, 3, 5],[1, 2, 3, 4, 5, 6, 7, 8],[3, 4, 5, 6, 1, 8, 2, 7]]
-a2 = Plateau(fenetre,N_REINES,vecteur_position)
-a2.mainloop()

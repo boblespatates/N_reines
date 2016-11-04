@@ -76,21 +76,26 @@ class Menu(Frame):
                 
 		# Appelle le bon algorithme
 		if ( self.ALGORITHME == 'Force Brute'):
-                    self.matriceSolution = fc.forceBrute(self.N_REINES)
+                    self.matriceSolution = [[1,2,3,4],[2,3,4,1]]	#fc.forceBrute(self.N_REINES)
                 if ( self.ALGORITHME == 'Force Brute plus'):
-                    self.matriceSoultion = fc.forceBruteAmelioree(self.N_REINES)
+                    self.matriceSolution = [[1,2,3,4],[2,3,4,1]]	#fc.forceBruteAmelioree(self.N_REINES)
                 if ( self.ALGORITHME == 'Parcours en profondeur'):
-                    self.matriceSolution = fc.parcoursEnProfondeur(self.N_REINES)             
+                    self.matriceSolution = [[1,2,3,4],[2,3,4,1]]	#fc.parcoursEnProfondeur(self.N_REINES)             
                 if ( self.ALGORITHME == 'Parcours en largeur'):
-                    self.matriceSolution = fc.parcoursEnLargeur(self.N_REINES)		
-               
-		self.destroy()
+                    self.matriceSolution = [[1,2,3,4],[2,3,4,1]]	#fc.parcoursEnLargeur(self.N_REINES)		
+               	
+		fenetre2 = Tk()
+		a2 = pl.Plateau(fenetre2,self.N_REINES,self.matriceSolution)
+		a2.mainloop()
+
+		try:
+			self.destroy()
+		except:
+			pass
 
 fenetre = Tk()
 Number = IntVar()
 Algorithme = StringVar()
 a1 = Menu(fenetre)
 a1.mainloop()
-a2 = Plateau(fenetre,a1.N_REINES,a1.matriceSolution)
-a2.mainloop()
 
