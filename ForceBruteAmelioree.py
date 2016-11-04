@@ -37,7 +37,7 @@ class ForceBruteAmelioree(Fonctions):
                 
         
         
-    def forceBruteAmelioree( n ):
+    def algorithme( n ):
         ''' même principe que force brute, retient la matrice des collisions pour une verication plus rapide de la permutation (la permutation suivante différant seulement d'une transposition)
         - n : taille de l'échiquier '''
         listeSolution = []

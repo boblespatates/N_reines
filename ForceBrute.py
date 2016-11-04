@@ -6,7 +6,7 @@ Created on Fri Nov  4 14:30:52 2016
 """
 class ForceBrute(Fonctions):
 
-    def forceBrute(n):
+    def algorithme(n):
         ''' parcourt les permutations, vérifie si elles sont solutions
         - n : taille de l'échiquier '''
         listeSolution = []

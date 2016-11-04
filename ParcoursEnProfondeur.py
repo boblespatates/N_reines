@@ -27,7 +27,7 @@ class ParcoursEnProfondeur(Fonctions):
         #si une reine ne peut pas se placer sur une ligne, revient à la ligne précédente
         return listeSolution
         
-    def parcoursEnProfondeur( n ):
+    def algorithme( n ):
         ''' parcourt le graphe en profondeur pour chercher les solutions
         - n : taille de l'échiquier '''
         permutation = np.zeros( n )

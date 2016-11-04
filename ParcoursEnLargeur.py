@@ -30,7 +30,7 @@ class ParcoursEnLargeur(Fonctions):
     
     
         
-    def parcoursEnLargeur(n):
+    def algorithme(n):
         ''' parcourt le graphe en largeur pour chercher les solutions
         - n : taille de l'échiquier '''
         return( parcoursEnLargeurRec( [[]], 0, n ) )
