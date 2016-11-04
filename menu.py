@@ -3,6 +3,8 @@
 
 from Tkinter import *
 
+import Fonctions
+
 class Menu(Frame):
 	''' Classe definissant un menu
 	qui va demander le nombre de dames,
@@ -69,7 +71,15 @@ class Menu(Frame):
 		self.N_REINES = Number.get()
 		print(self.N_REINES)
 		print(self.ALGORITHME)
-		self.destroy()
+                if ( self.ALGORITHME == 'Force Brute'):
+                    ForceBrute(self.N_REINES)
+                if ( self.ALGORITHME == 'Force Brute plus'):
+                    ForceBruteAmelioree(self.N_REINES)
+                if ( self.ALGORITHME == 'Parcours en profondeur'):
+                    ParcoursEnProfondeur(self.N_REINES)             
+                if ( self.ALGORITHME == 'Parcours en largeur'):
+                    ParcoursEnLargeur(self.N_REINES)		
+                self.destroy()
 
 fenetre = Tk()
 Number = IntVar()

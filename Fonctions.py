@@ -99,7 +99,6 @@ def parcoursEnLargeurRec( collection, i, n ):
             L.append( j )
             if test2( L, i + 1, i ):
                 #Si l'ajout d'une reine marche, l'ajoute a la collection
-                print( L, i )
                 nouvelleCollection.append( list(L) )
             L.pop(i)
     #Si on n'est pas encore à la dernière ligne, ajoute une nouvelle reine
@@ -221,4 +220,3 @@ def forceBruteAmelioree( n ):
     #affiche le nombre de solutions
     print( compteur )
                 
-forceBruteAmelioree( 8 )
