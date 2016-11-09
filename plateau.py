@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding utf-8 -*-
 
-from Tkinter import *
+from tkinter import *
 
 class Plateau(Frame):
 	''' Classe ou l'on pourra voir les
@@ -37,10 +37,10 @@ class Plateau(Frame):
 		DIM_CASE = 50
 		x0,y0 = 1,1
 		for i in range(N_REINES+1):
-			coordonees_colonne = [x0+DIM_CASE*i,y0,x0+DIM_CASE*i,y0 + N_REINES*DIM_CASE]
-			coordonees_ligne = [x0,y0+DIM_CASE*i,x0+N_REINES*DIM_CASE,y0+DIM_CASE*i]
+			coordonees_colonne = [x0 + DIM_CASE * i , y0 , x0 + DIM_CASE * i , y0 + N_REINES * DIM_CASE]
+			coordonees_ligne = [x0 , y0 + DIM_CASE * i , x0 + N_REINES * DIM_CASE , y0 + DIM_CASE * i]
 			self.canvas.create_line(coordonees_colonne)
-        		self.canvas.create_line(coordonees_ligne)
+			self.canvas.create_line(coordonees_ligne)
 		
 		# Place les pions
 		n = 0
@@ -59,7 +59,7 @@ class Plateau(Frame):
 		a la solution suivante '''
 		
 		self.bouton_suivant = Button(self, text="Suivant", command=self.suivant)
-                self.bouton_suivant.pack()
+		self.bouton_suivant.pack()
 	
 	def suivant(self):
 		''' Passe a la solution
