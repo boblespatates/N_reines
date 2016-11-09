@@ -4,7 +4,10 @@ Created on Fri Nov  4 14:30:53 2016
 
 @author: emacedegastines
 """
-class ForceBruteAmelioree(Fonctions):
+
+import Fonctions
+
+class ForceBruteAmelioree(Fonctions.Fonctions):
 
     def miseAJourCollisions( permutation, i, j, matriceCollision, n ):
         ''' met à jour la matrice de collision M selon L sachant que les dames i et j ont été permutées

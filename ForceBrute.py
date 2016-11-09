@@ -4,7 +4,10 @@ Created on Fri Nov  4 14:30:52 2016
 
 @author: emacedegastines
 """
-class ForceBrute(Fonctions):
+
+import Fonctions
+
+class ForceBrute(Fonctions.Fonctions):
 
     def algorithme(n):
         ''' parcourt les permutations, vérifie si elles sont solutions

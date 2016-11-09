@@ -5,7 +5,9 @@ Created on Fri Nov  4 14:30:54 2016
 @author: emacedegastines
 """
 
-class ParcoursEnProfondeur(Fonctions):
+import Fonctions
+
+class ParcoursEnProfondeur(Fonctions.Fonctions):
     
     def parcoursEnProfondeurRec(permutation, i, n):
         ''' fonction récursive pour le parcours en profondeur

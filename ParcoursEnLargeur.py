@@ -5,7 +5,9 @@ Created on Fri Nov  4 14:30:54 2016
 @author: emacedegastines
 """
 
-class ParcoursEnLargeur(Fonctions):
+import Fonctions
+
+class ParcoursEnLargeur(Fonctions.Fonctions):
         
     def parcoursEnLargeurRec( listeSolution, i, n ):
         ''' fonction récursive pour le parcours en largeur
@@ -33,4 +35,4 @@ class ParcoursEnLargeur(Fonctions):
     def algorithme(n):
         ''' parcourt le graphe en largeur pour chercher les solutions
         - n : taille de l'échiquier '''
-        return( parcoursEnLargeurRec( [[]], 0, n ) )
+        return( self.parcoursEnLargeurRec( [[]], 0, n ) )

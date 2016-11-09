@@ -3,8 +3,7 @@
 
 from tkinter import *
 
-import Fonctions as fc
-import plateau as pl
+import Fonctions as fc , ForceBrute as fb, ForceBruteAmelioree as fba, ParcoursEnProfondeur as pep, ParcoursEnLargeur as pel, plateau as pl
 
 class Menu(Frame):
 	''' Classe definissant un menu
@@ -78,13 +77,13 @@ class Menu(Frame):
 
 			# Appelle le bon algorithme
 			if ( self.ALGORITHME == 'Force Brute'):
-				self.matriceSolution = [[1,2,3,4],[2,3,4,1]]	#fc.forceBrute(self.N_REINES)
+				fb.ForceBrute.algorithme(self.N_REINES)
 			if ( self.ALGORITHME == 'Force Brute plus'):
-				self.matriceSolution = [[1,2,3,4],[2,3,4,1]]	#fc.forceBruteAmelioree(self.N_REINES)
+				fba.algorithme(self.N_REINES)
 			if ( self.ALGORITHME == 'Parcours en profondeur'):
-				self.matriceSolution = [[1,2,3,4],[2,3,4,1]]	#fc.parcoursEnProfondeur(self.N_REINES)             
+				pep.ParcoursEnProfondeur.algorithme(self.N_REINES)
 			if ( self.ALGORITHME == 'Parcours en largeur'):
-				self.matriceSolution = [[1,2,3,4],[2,3,4,1]]	#fc.parcoursEnLargeur(self.N_REINES)		
+				pel.ParcoursEnLargeur.algorithme(self.N_REINES)
 			fenetre2 = Tk()
 			a2 = pl.Plateau(fenetre2,self.N_REINES,self.matriceSolution)
 			a2.mainloop()
