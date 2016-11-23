@@ -77,14 +77,15 @@ class Menu(Frame):
 
 			# Appelle le bon algorithme
 			if ( self.ALGORITHME == 'Force Brute'):
-				fb.ForceBrute.algorithme(self.N_REINES)
+				self.matriceSolution = fb.ForceBrute.algorithme(self.N_REINES)
 			if ( self.ALGORITHME == 'Force Brute plus'):
-				fba.algorithme(self.N_REINES)
+				self.matriceSolution = fba.algorithme(self.N_REINES)
 			if ( self.ALGORITHME == 'Parcours en profondeur'):
-				pep.ParcoursEnProfondeur.algorithme(self.N_REINES)
+				self.matriceSolution = pep.ParcoursEnProfondeur.algorithme(self.N_REINES)
 			if ( self.ALGORITHME == 'Parcours en largeur'):
-				pel.ParcoursEnLargeur.algorithme(self.N_REINES)
+				self.matriceSolution = pel.ParcoursEnLargeur.algorithme(self.N_REINES)
 			fenetre2 = Tk()
+			print(self.matriceSolution)
 			a2 = pl.Plateau(fenetre2,self.N_REINES,self.matriceSolution)
 			a2.mainloop()
 

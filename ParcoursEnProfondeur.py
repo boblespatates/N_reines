@@ -5,9 +5,9 @@ Created on Fri Nov  4 14:30:54 2016
 @author: emacedegastines
 """
 
-import Fonctions
+from Fonctions import Fonctions
 
-class ParcoursEnProfondeur(Fonctions.Fonctions):
+class ParcoursEnProfondeur(Fonctions):
     
     def parcoursEnProfondeurRec(permutation, i, n):
         ''' fonction récursive pour le parcours en profondeur
@@ -22,7 +22,7 @@ class ParcoursEnProfondeur(Fonctions.Fonctions):
             #sinon, passe à la ligne suivante
             else :
                 if i < n - 1:
-                    parcoursEnProfondeurRec( permutation, i + 1, n)
+                    ParcoursEnProfondeur.parcoursEnProfondeurRec( permutation, i + 1, n)
                 #enregistre la solution car on a parcouru toute les lignes
                 else :
                     listeSolution.append(permutation)
@@ -33,4 +33,4 @@ class ParcoursEnProfondeur(Fonctions.Fonctions):
         ''' parcourt le graphe en profondeur pour chercher les solutions
         - n : taille de l'échiquier '''
         permutation = np.zeros( n )
-        return( parcoursEnProfondeurRec( permutation, 0, n) )
+        return( ParcoursEnProfondeur.parcoursEnProfondeurRec( permutation, 0, n) )

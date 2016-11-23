@@ -5,9 +5,9 @@ Created on Fri Nov  4 14:30:54 2016
 @author: emacedegastines
 """
 
-import Fonctions
+from Fonctions import Fonctions
 
-class ParcoursEnLargeur(Fonctions.Fonctions):
+class ParcoursEnLargeur(Fonctions):
         
     def parcoursEnLargeurRec( listeSolution, i, n ):
         ''' fonction récursive pour le parcours en largeur
@@ -20,14 +20,14 @@ class ParcoursEnLargeur(Fonctions.Fonctions):
             #pour chaque solution partielle, vérifie si l'ajout d'une reine marche toujours
             for j in range( n ):
                 L.append( j )
-                if test2( L, i + 1, i ):
+                if Fonctions.test2( L, i + 1, i ):
                     #Si l'ajout d'une reine marche, l'ajoute a la collection
                     nouvelleListeSolution.append( list(L) )
                 L.pop(i)
+                
         #Si on n'est pas encore à la dernière ligne, ajoute une nouvelle reine
-        if i < n - 1:
-            return parcoursEnLargeurRec( nouvelleListeSolution, i + 1, n ) 
-    
+        if i < n :
+            return ParcoursEnLargeur.parcoursEnLargeurRec( nouvelleListeSolution, i + 1, n ) 
         return listeSolution
     
     
@@ -35,4 +35,6 @@ class ParcoursEnLargeur(Fonctions.Fonctions):
     def algorithme(n):
         ''' parcourt le graphe en largeur pour chercher les solutions
         - n : taille de l'échiquier '''
-        return( self.parcoursEnLargeurRec( [[]], 0, n ) )
+        return( ParcoursEnLargeur.parcoursEnLargeurRec( [[]], 0, n ) )
+
+ParcoursEnLargeur.algorithme(4)
