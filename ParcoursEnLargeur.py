@@ -37,4 +37,6 @@ class ParcoursEnLargeur(Fonctions):
         - n : taille de l'échiquier '''
         return( ParcoursEnLargeur.parcoursEnLargeurRec( [[]], 0, n ) )
 
-ParcoursEnLargeur.algorithme(4)
+    algorithme = staticmethod(algorithme)
+    parcoursEnLargeurRec = staticmethod(parcoursEnLargeurRec)
+    

@@ -34,3 +34,6 @@ class ParcoursEnProfondeur(Fonctions):
         - n : taille de l'échiquier '''
         permutation = np.zeros( n )
         return( ParcoursEnProfondeur.parcoursEnProfondeurRec( permutation, 0, n) )
+
+    algorithme = staticmethod(algorithme)
+    parcoursEnProfondeurRec = staticmethod(parcoursEnProfondeurRec)

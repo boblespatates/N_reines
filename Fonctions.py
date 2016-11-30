@@ -55,9 +55,9 @@ class Fonctions:
         return ( False, 0, 0 )
     
     
-    
-    
-    
+    test = staticmethod(test)
+    test2 = staticmethod(test2)
+    nextPermutationSJT = staticmethod(nextPermutationSJT)
     
     
     

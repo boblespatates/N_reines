@@ -31,3 +31,4 @@ class ForceBrute(Fonctions):
                 listeSolution.append(permutationPositive)
         return(listeSolution)
         
+    algorithme = staticmethod(algorithme)

@@ -62,3 +62,7 @@ class ForceBruteAmelioree(Fonctions):
                 permutationPositive = [ abs(x) for x in permutation ]
                 listeSolution.append(permutationPositive)
         return(listeSolution)
+
+
+    algorithme = staticmethod(algorithme)
+    miseAJourCollisions = staticmethod(miseAJourCollisions)

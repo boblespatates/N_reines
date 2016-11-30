@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from tkinter import *
+from Tkinter import *
 
 import Fonctions as fc , ForceBrute as fb, ForceBruteAmelioree as fba, ParcoursEnProfondeur as pep, ParcoursEnLargeur as pel, plateau as pl
 
@@ -85,7 +85,6 @@ class Menu(Frame):
 			if ( self.ALGORITHME == 'Parcours en largeur'):
 				self.matriceSolution = pel.ParcoursEnLargeur.algorithme(self.N_REINES)
 			fenetre2 = Tk()
-			print(self.matriceSolution)
 			a2 = pl.Plateau(fenetre2,self.N_REINES,self.matriceSolution)
 			a2.mainloop()
 
