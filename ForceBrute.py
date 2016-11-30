@@ -4,7 +4,7 @@ Created on Fri Nov  4 14:30:52 2016
 
 @author: emacedegastines
 """
-
+import numpy as np
 from Fonctions import Fonctions
 
 class ForceBrute(Fonctions):

@@ -51,11 +51,11 @@ class Menu(Frame):
 		for algo in ['Force Brute', 'Force Brute plus',
                'Parcours en profondeur', 'Parcours en largeur']:
 			rb = Radiobutton(self, text=algo, value=algo, variable=Algorithme)
-		if i<=2:
-			rb.grid(row=5,column=i)
-		else:
-			rb.grid(row=6,column=i-2)
-		i += 1
+			if i<=2:
+				rb.grid(row=5,column=i)
+			else:
+				rb.grid(row=6,column=i-2)
+			i += 1
 
 	def boutton(self):
 		''' Cree un boutton pour
@@ -84,6 +84,9 @@ class Menu(Frame):
 				self.matriceSolution = pep.ParcoursEnProfondeur.algorithme(self.N_REINES)
 			if ( self.ALGORITHME == 'Parcours en largeur'):
 				self.matriceSolution = pel.ParcoursEnLargeur.algorithme(self.N_REINES)
+
+			# Dessin du plateau
+			print(self.matriceSolution)
 			fenetre2 = Tk()
 			a2 = pl.Plateau(fenetre2,self.N_REINES,self.matriceSolution)
 			a2.mainloop()

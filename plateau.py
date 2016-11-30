@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding utf-8 -*-
 
-from tkinter import *
+from Tkinter import *
 
 class Plateau(Frame):
 	''' Classe ou l'on pourra voir les
@@ -47,7 +47,7 @@ class Plateau(Frame):
 		x0,y0 = 4,4
 		x1,y1 = 49,49
 		for i in vecteur_position:
-			temps = DIM_CASE*(i-1)
+			temps = DIM_CASE*i
 			coordonees = [x0+DIM_CASE*n,y0+temps,x1+DIM_CASE*n,y1+temps]
 			self.canvas.create_oval(coordonees,fill='black',outline='white')
 			n += 1	
@@ -64,10 +64,14 @@ class Plateau(Frame):
 	def suivant(self):
 		''' Passe a la solution
 		suivante '''
-	
+			
 		# Prochaine solution	
 		self.solution += 1
 		
+		print(self.solution)
+		print(self.matrice_solution)
+		print (len(self.matrice_solution))
+
 		#  A la fin, retour a la 1 ere solution
 		if self.solution >= (len(self.matrice_solution)):
 			self.solution = 0
