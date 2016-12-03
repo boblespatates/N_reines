@@ -18,15 +18,15 @@ class ForceBrute(Fonctions):
         isPermutation = True
         #initialise la première permutation
         permutation = np.linspace( 0, n - 1, n )
-        if test( permutation, n ):
-            listeSolution.append(permutation)
+        if Fonctions.test( permutation, n ):
+            listeSolution.append(list(permutation))
         #parcourt les permutations
         while isPermutation:
             #calcul de la permutation suivante
-            resultat = nextPermutationSJT( permutation, n )
+            resultat = Fonctions.nextPermutationSJT( permutation, n )
             isPermutation = resultat[0]
             # si la permutation est solution, l'enregistre
-            if isPermutation and test( permutation, n ):
+            if isPermutation and Fonctions.test( permutation, n ):
                 permutationPositive = [ abs(x) for x in permutation ]
                 listeSolution.append(permutationPositive)
         return(listeSolution)

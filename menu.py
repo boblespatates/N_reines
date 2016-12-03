@@ -79,7 +79,7 @@ class Menu(Frame):
 			if ( self.ALGORITHME == 'Force Brute'):
 				self.matriceSolution = fb.ForceBrute.algorithme(self.N_REINES)
 			if ( self.ALGORITHME == 'Force Brute plus'):
-				self.matriceSolution = fba.algorithme(self.N_REINES)
+				self.matriceSolution = fba.ForceBruteAmelioree.algorithme(self.N_REINES)
 			if ( self.ALGORITHME == 'Parcours en profondeur'):
 				self.matriceSolution = pep.ParcoursEnProfondeur.algorithme(self.N_REINES)
 			if ( self.ALGORITHME == 'Parcours en largeur'):

@@ -4,7 +4,7 @@ Created on Fri Nov  4 14:30:53 2016
 
 @author: emacedegastines
 """
-
+import numpy as np
 from Fonctions  import Fonctions
 
 class ForceBruteAmelioree(Fonctions):
@@ -35,7 +35,7 @@ class ForceBruteAmelioree(Fonctions):
                 matriceCollision[j][k] = 0
         if isCollision:
             #s'il n'y a pas de nouvelles collisions, teste toute la matrice
-            isCollision = test( permutation, n )
+            isCollision = Fonctions.test( permutation, n )
         return isCollision
                 
         
@@ -50,15 +50,15 @@ class ForceBruteAmelioree(Fonctions):
         matriceCollision = np.ones( ( n, n ) )
         #initialise la première permutation
         permutation = np.linspace( 0, n - 1, n )
-        if test( permutation, n ):
-            listeSolution.append(permutation)
+        if Fonctions.test( permutation, n ):
+            listeSolution.append(list(permutation))
         #parcourt les permutations
         while isPermutation:
             #calcul de la permutation suivante
-            resultat = nextPermutationSJT( permutation, n )
+            resultat = Fonctions.nextPermutationSJT( permutation, n )
             isPermutation = resultat[0]
             # si la permutation est solution, l'enregistre
-            if miseAJourCollisions( permutation, resultat[1], resultat[2], matriceCollision, n ):
+            if ForceBruteAmelioree.miseAJourCollisions( permutation, resultat[1], resultat[2], matriceCollision, n ):
                 permutationPositive = [ abs(x) for x in permutation ]
                 listeSolution.append(permutationPositive)
         return(listeSolution)
