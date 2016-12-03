@@ -68,10 +68,6 @@ class Plateau(Frame):
 		# Prochaine solution	
 		self.solution += 1
 		
-		#print(self.solution)
-		#print(self.matrice_solution)
-		#print (len(self.matrice_solution))
-
 		#  A la fin, retour a la 1 ere solution
 		if self.solution >= (len(self.matrice_solution)):
 			self.solution = 0

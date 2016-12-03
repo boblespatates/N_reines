@@ -86,7 +86,6 @@ class Menu(Frame):
 				self.matriceSolution = pel.ParcoursEnLargeur.algorithme(self.N_REINES)
 
 			# Dessin du plateau
-			print(self.matriceSolution)
 			fenetre2 = Tk()
 			a2 = pl.Plateau(fenetre2,self.N_REINES,self.matriceSolution)
 			a2.mainloop()
