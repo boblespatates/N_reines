@@ -4,12 +4,13 @@ Created on Fri Nov  4 14:30:54 2016
 
 @author: emacedegastines
 """
-
+import numpy as np
 from Fonctions import Fonctions
+from Liste import Liste
 
 class ParcoursEnLargeur(Fonctions):
         
-    def parcoursEnLargeurRec( listeSolution, i, n ):
+    def parcoursEnLargeurRec2( listeSolution, i, n ):
         ''' fonction récursive pour le parcours en largeur
         - listeSolution : liste de solutions partielles 
         - i : nombre de ligne déjà remplies à l'entrée de la fonction 
@@ -30,13 +31,31 @@ class ParcoursEnLargeur(Fonctions):
             return ParcoursEnLargeur.parcoursEnLargeurRec( nouvelleListeSolution, i + 1, n ) 
         return listeSolution
     
-    
+    def parcoursEnLargeurRec( listeSolution, i, n ):
+        ''' fonction récursive pour le parcours en largeur
+        - listeSolution : liste de solutions partielles 
+        - i : nombre de ligne déjà remplies à l'entrée de la fonction 
+        - n : taille de l'échiquier '''
+        permutation = Liste.premierListe(listeSolution)
+        #vérifie quand l'ajout d'une reine marche
+        for j in range( n ):
+            permutation[i] = j 
+            if Fonctions.test2( permutation, i + 1, i ):
+                #Si l'ajout d'une reine marche, l'ajoute a la collection
+                listeSolution.append( list(permutation) )
+
+        #Si on n'est pas encore à la dernière ligne, ajoute une nouvelle reine
+        if i < n - 1 :
+            return Liste.construit(permutation, ParcoursEnLargeur.parcoursEnLargeurRec( Liste.resteListe(listeSolution), i + 1, n ) )
+        return listeSolution 
         
     def algorithme(n):
         ''' parcourt le graphe en largeur pour chercher les solutions
         - n : taille de l'échiquier '''
-        return( ParcoursEnLargeur.parcoursEnLargeurRec( [[]], 0, n ) )
+        permutation = np.zeros( n )
+        return( ParcoursEnLargeur.parcoursEnLargeurRec( [permutation], 0, n ) )
 
     algorithme = staticmethod(algorithme)
     parcoursEnLargeurRec = staticmethod(parcoursEnLargeurRec)
-    
+
+print( ParcoursEnLargeur.algorithme(5) )

@@ -6,6 +6,7 @@ Created on Fri Nov  4 14:30:54 2016
 """
 import numpy as np
 from Fonctions import Fonctions
+from Liste import Liste
 
 class ParcoursEnProfondeur(Fonctions):
 
@@ -18,7 +19,7 @@ class ParcoursEnProfondeur(Fonctions):
         - n : taille de l'échiquier'''
         permutation[i] = j
         print(permutation)
-        if Fonctions.test2( permutation, i + 1, i ): 
+        if Liste.test2( permutation, i + 1, i ): 
             if i == n - 1:
                 #retourne une solution
                 return [list(permutation)]
@@ -40,11 +41,8 @@ class ParcoursEnProfondeur(Fonctions):
         ''' parcourt le graphe en profondeur pour chercher les solutions
         - n : taille de l'échiquier '''
         permutation = np.zeros( n )
-        return( ParcoursEnProfondeur.parcoursEnProfondeurRec( list(permutation), 0, 0, n) )
+        return( ParcoursEnProfondeur.parcoursEnProfondeurRec( permutation, 0, 0, n) )
 
     algorithme = staticmethod(algorithme)
     parcoursEnProfondeurRec = staticmethod(parcoursEnProfondeurRec)
     
-
-
-#print( ParcoursEnProfondeur.algorithme(5))
