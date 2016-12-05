@@ -54,7 +54,10 @@ class Fonctions:
             permutation[p] = -permutation[p]
         return ( False, 0, 0 )
     
-    
+    def concatene(L1,L2):
+        return(L1+L2)
+        
+    concatene = staticmethod(concatene)
     test = staticmethod(test)
     test2 = staticmethod(test2)
     nextPermutationSJT = staticmethod(nextPermutationSJT)
