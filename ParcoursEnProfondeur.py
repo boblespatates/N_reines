@@ -18,7 +18,6 @@ class ParcoursEnProfondeur(Fonctions):
         - j : colonne a tester dans la i-ème ligne
         - n : taille de l'échiquier'''
         permutation[i] = j
-        print(permutation)
         if Liste.test2( permutation, i + 1, i ): 
             if i == n - 1:
                 #retourne une solution
