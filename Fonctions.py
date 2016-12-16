@@ -29,8 +29,19 @@ class Fonctions:
             if  j != i and ( permutation[j] == permutation[i] or abs( j - i ) == abs( abs( permutation[j] )-abs( permutation[i] ) ) ):
                 return False
         return True
-    
-    
+        
+    def test3( permutation, L, i, j):
+        ''' teste les conflits d'une permutation sur la j-ème ligne
+        - permutation : permutation à vérifier
+        - L : liste des indices dans l'ordre de remplissage
+        - i : nombre de lignes remplies
+        - j : ligne à vérifier'''
+        for k in range(i):
+            if  j != i and ( permutation[j] == permutation[L[i]] or abs( j - i ) == abs( abs( permutation[j] )-abs( permutation[L[i]] ) ) ):        
+                return False
+        return True
+        
+        
     def nextPermutationSJT(permutation, n):
         ''' pour une permutation donnée, calcule la permutation suivante selon l'algorithme de Steinhaus–Johnson–Trotter.
         Il faut que la direction soit précisée (nombre positif: direction vers la gauche, nombre négatif: direction vers la droite) 
