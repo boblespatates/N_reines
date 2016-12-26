@@ -44,4 +44,5 @@ class ParcoursEnProfondeur(Fonctions):
 
     algorithme = staticmethod(algorithme)
     parcoursEnProfondeurRec = staticmethod(parcoursEnProfondeurRec)
-    
+
+print( len(ParcoursEnProfondeur.algorithme(9)) )

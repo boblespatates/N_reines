@@ -29,15 +29,32 @@ class Fonctions:
             if  j != i and ( permutation[j] == permutation[i] or abs( j - i ) == abs( abs( permutation[j] )-abs( permutation[i] ) ) ):
                 return False
         return True
+    
+    
+    def test3( permutation, L, i, j, n):
+        '''teste le nombre de placements viables sur la j-ème ligne
+        - permutation : permutation à vérifier
+        - L : liste des indices à vérifier
+        - i : nombre de lignes remplies
+        - j : ligne où compter le nombre de placements viables
+        - n : taille de l'échiquier'''
+        compteur = 0
+        for k in range(n):
+            placementViable = True
+            for l in range(i):
+                if ( k == permutation[ int(L[l]) ] or abs( j - int(L[l]) ) == abs( abs( k )-abs( permutation[ int(L[l]) ] ) ) ):      #int car probleme de float  
+                    placementViable = False
+            if placementViable:
+                compteur = compteur + 1
+        return compteur
         
-    def test3( permutation, L, i, j):
+    def test4( permutation, L, i):
         ''' teste les conflits d'une permutation sur la j-ème ligne
         - permutation : permutation à vérifier
         - L : liste des indices dans l'ordre de remplissage
-        - i : nombre de lignes remplies
-        - j : ligne à vérifier'''
+        - i : nombre de lignes remplies'''
         for k in range(i):
-            if  j != i and ( permutation[j] == permutation[L[i]] or abs( j - i ) == abs( abs( permutation[j] )-abs( permutation[L[i]] ) ) ):        
+            if  int(L[k]) != int(L[i]) and ( permutation[ int(L[k]) ] == permutation[ int(L[i]) ] or abs( int(L[k]) - int(L[i]) ) == abs( abs( permutation[ int(L[k]) ] )-abs( permutation[ int(L[i]) ] ) ) ): #int car probleme de float     
                 return False
         return True
         
@@ -67,6 +84,8 @@ class Fonctions:
     
     test = staticmethod(test)
     test2 = staticmethod(test2)
+    test3 = staticmethod(test3)
+    test4 = staticmethod(test4)
     nextPermutationSJT = staticmethod(nextPermutationSJT)
     
     

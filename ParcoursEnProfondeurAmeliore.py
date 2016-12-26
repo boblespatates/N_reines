@@ -17,8 +17,8 @@ class ParcoursEnProfondeurAmeliore(Fonctions):
         - i : nombre de lignes déjà remplies
         - j : colonne à tester
         - n : taille de l'échiquier'''
-        permutation[L[i]] = j
-        if Fonctions.test4( permutation, L, i, j ): 
+        permutation[ int(L[i]) ] = j #int car probleme de float
+        if Fonctions.test4( permutation, L, i):
             if i == n - 1:
                 #retourne une solution
                 return [list(permutation)]
@@ -29,7 +29,7 @@ class ParcoursEnProfondeurAmeliore(Fonctions):
                     return( ParcoursEnProfondeurAmeliore.parcoursEnProfondeurRec( list(permutation), L, i + 1,  n ) )
                 else:
                     #retourne les solutions en ajoutant un pion ou en déplacant le dernier pion selon j
-                    return Fonctions.concatene( ParcoursEnProfondeurAmeliore.parcoursLigne( list(permutation), L, i, j + 1, n ), ParcoursEnProfondeurAmeliore.parcoursEnProfondeurRec( list(permutation), L, i + 1,  n ) )
+                    return Liste.concatene( ParcoursEnProfondeurAmeliore.parcoursLigne( list(permutation), L, i, j + 1, n ), ParcoursEnProfondeurAmeliore.parcoursEnProfondeurRec( list(permutation), L, i + 1,  n ) )
         else:
             if j != n - 1:
                 #retourne les solutions en déplacant le dernier pion selon j
@@ -45,7 +45,7 @@ class ParcoursEnProfondeurAmeliore(Fonctions):
         minNombrePlacement = n
         # cherche la ligne possédant le moins de placements viables pour un pion
         for j in range(i,n):        
-            nombrePlacement = Fonctions.test3( permutation, L, i, L[j] )
+            nombrePlacement = Fonctions.test3( permutation, L, i, L[j], n )
             if (minNombrePlacement > nombrePlacement):
                 minNombrePlacement = nombrePlacement
                 ligneMinimale = j
@@ -62,10 +62,11 @@ class ParcoursEnProfondeurAmeliore(Fonctions):
         ''' parcourt le graphe en profondeur pour chercher les solutions
         - n : taille de l'échiquier '''
         permutation = np.zeros( n )
-        return( ParcoursEnProfondeurAmeliore.parcoursEnProfondeurRec( permutation, 0, 0, n) )
+        L = np.linspace(0,n-1,n)
+        return( ParcoursEnProfondeurAmeliore.parcoursLigne( permutation, L, 0, 0, n) )
 
     algorithme = staticmethod(algorithme)
     parcoursEnProfondeurRec = staticmethod(parcoursEnProfondeurRec)
     parcoursLigne = staticmethod(parcoursLigne)
     
-ParcoursEnProfondeurAmeliore.algorithme(4)
+print( len(ParcoursEnProfondeurAmeliore.algorithme(9)) )
