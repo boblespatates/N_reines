@@ -18,7 +18,7 @@ class ParcoursEnProfondeur(Fonctions):
         - j : colonne a tester dans la i-ème ligne
         - n : taille de l'échiquier'''
         permutation[i] = j
-        if Liste.test2( permutation, i + 1, i ): 
+        if Fonctions.test2( permutation, i + 1, i ): 
             if i == n - 1:
                 #retourne une solution
                 return [list(permutation)]
@@ -29,7 +29,7 @@ class ParcoursEnProfondeur(Fonctions):
                     return( ParcoursEnProfondeur.parcoursEnProfondeurRec( list(permutation), i + 1, 0,  n) )
                 else:
                     #retourne les solutions en ajoutant un pion ou en déplacant le dernier pion selon j
-                    return Fonctions.concatene( ParcoursEnProfondeur.parcoursEnProfondeurRec( list(permutation), i, j + 1, n), ParcoursEnProfondeur.parcoursEnProfondeurRec( list(permutation), i + 1, 0, n) )
+                    return Liste.concatene( ParcoursEnProfondeur.parcoursEnProfondeurRec( list(permutation), i, j + 1, n), ParcoursEnProfondeur.parcoursEnProfondeurRec( list(permutation), i + 1, 0, n) )
         else:
             if j != n - 1:
                 #retourne les solutions en déplacant le dernier pion selon j
@@ -44,4 +44,5 @@ class ParcoursEnProfondeur(Fonctions):
 
     algorithme = staticmethod(algorithme)
     parcoursEnProfondeurRec = staticmethod(parcoursEnProfondeurRec)
-    
+
+print( len(ParcoursEnProfondeur.algorithme(9)) )
