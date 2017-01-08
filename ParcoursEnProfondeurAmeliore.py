@@ -69,4 +69,3 @@ class ParcoursEnProfondeurAmeliore(Fonctions):
     parcoursEnProfondeurRec = staticmethod(parcoursEnProfondeurRec)
     parcoursLigne = staticmethod(parcoursLigne)
     
-print( len(ParcoursEnProfondeurAmeliore.algorithme(9)) )
