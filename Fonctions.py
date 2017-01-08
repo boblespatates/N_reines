@@ -73,14 +73,14 @@ class Fonctions:
             #vérifie la possibilité d'un décalage à gauche
             if permutation[p] > 0 and p > 0 and abs( permutation[p - 1] ) < abs( permutation[p] ):
                 ( permutation[p], permutation[p - 1] ) = ( permutation[p - 1], permutation[p] )
-                return ( True, p , p - 1 )
+                return True
             #vérifie la possibilité d'un décalage à droite        
             if permutation[p] < 0 and p < n - 1 and abs( permutation[p + 1] ) < abs( permutation[p] ):
                 ( permutation[p], permutation[p + 1] ) = ( permutation[p + 1], permutation[p] )
-                return ( True, p, p + 1 )
+                return True
             #si le décalage n'est pas possible, change la direction
             permutation[p] = -permutation[p]
-        return ( False, 0, 0 )
+        return False
     
     test = staticmethod(test)
     test2 = staticmethod(test2)

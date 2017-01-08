@@ -23,11 +23,10 @@ class ForceBrute(Fonctions):
         #parcourt les permutations
         while isPermutation:
             #calcul de la permutation suivante
-            resultat = Fonctions.nextPermutationSJT( permutation, n )
-            isPermutation = resultat[0]
+            isPermutation = Fonctions.nextPermutationSJT( permutation, n )
             # si la permutation est solution, l'enregistre
             if isPermutation and Fonctions.test( permutation, n ):
-                permutationPositive = [ abs(x) for x in permutation ]
+                permutationPositive = [ abs(x) for x in permutation ] #pour renvoyer une permutation avec seulement des entiers positifs
                 listeSolution.append(permutationPositive)
         return(listeSolution)
         
