@@ -2,8 +2,9 @@
 # -*- coding: utf-8 -*-
 
 from Tkinter import *
+import time
 
-import Fonctions as fc , ForceBrute as fb, ForceBruteAmelioree as fba, ParcoursEnProfondeur as pep, ParcoursEnLargeur as pel, plateau as pl
+import Fonctions as fc , ForceBrute as fb, ParcoursEnProfondeur as pep, ParcoursEnLargeur as pel, plateau as pl, ParcoursEnProfondeurAmeliore as pepa
 
 class Menu(Frame):
 	''' Classe definissant un menu
@@ -48,7 +49,7 @@ class Menu(Frame):
 		label2.grid(row=4,column=1,columnspan=2)
 		
 		i=1
-		for algo in ['Force Brute', 'Force Brute plus',
+		for algo in ['Force Brute', 'Parcours en profondeur Ameliore',
                'Parcours en profondeur', 'Parcours en largeur']:
 			rb = Radiobutton(self, text=algo, value=algo, variable=Algorithme)
 			if i<=2:
@@ -77,15 +78,22 @@ class Menu(Frame):
 
 			# Appelle le bon algorithme
 			if ( self.ALGORITHME == 'Force Brute'):
+				debut = time.strftime("%A %d %B %Y %H:%M:%S")
 				self.matriceSolution = fb.ForceBrute.algorithme(self.N_REINES)
-			if ( self.ALGORITHME == 'Force Brute plus'):
-				self.matriceSolution = fba.ForceBruteAmelioree.algorithme(self.N_REINES)
+			if ( self.ALGORITHME == 'Parcours en profondeur Ameliore'):
+				debut = time.strftime("%A %d %B %Y %H:%M:%S")
+				self.matriceSolution = pepa.ParcoursEnProfondeurAmeliore.algorithme(self.N_REINES)
 			if ( self.ALGORITHME == 'Parcours en profondeur'):
+				debut = time.strftime("%A %d %B %Y %H:%M:%S")
 				self.matriceSolution = pep.ParcoursEnProfondeur.algorithme(self.N_REINES)
 			if ( self.ALGORITHME == 'Parcours en largeur'):
+				debut = time.strftime("%A %d %B %Y %H:%M:%S")
 				self.matriceSolution = pel.ParcoursEnLargeur.algorithme(self.N_REINES)
 
 			# Dessin du plateau
+			fin = time.strftime("%A %d %B %Y %H:%M:%S")
+			print(debut)
+			print(fin)
 			fenetre2 = Tk()
 			a2 = pl.Plateau(fenetre2,self.N_REINES,self.matriceSolution)
 			a2.mainloop()
