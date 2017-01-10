@@ -9,8 +9,8 @@ from Fonctions import Fonctions
 from Liste import Liste
 
 class ParcoursEnProfondeurAmeliore(Fonctions):
-
-    def parcoursLigne(permutation, L, i, j, n):
+    
+    def parcoursLigne(permutation, L, i, j, matriceDeCollision, n):
         ''' fonction récursive pour le parcours en profondeur
         - permutation : solution partielle étudiée
         - L : liste des indices dans l'ordre de remplissage
@@ -24,28 +24,30 @@ class ParcoursEnProfondeurAmeliore(Fonctions):
                 return [list(permutation)]
             
             else:
+                nouvelleMatriceDeCollision = list(matriceDeCollision)
+                Fonctions.miseAJourCollisions( int(L[i]), j, nouvelleMatriceDeCollision, n )
                 if j == n - 1:
                     # retourne les solutions en ajoutant un pion
-                    return( ParcoursEnProfondeurAmeliore.parcoursEnProfondeurRec( list(permutation), L, i + 1,  n ) )
+                    return( ParcoursEnProfondeurAmeliore.parcoursEnProfondeurRec( list(permutation), L, i + 1, nouvelleMatriceDeCollision,  n ) )
                 else:
                     #retourne les solutions en ajoutant un pion ou en déplacant le dernier pion selon j
-                    return Liste.concatene( ParcoursEnProfondeurAmeliore.parcoursLigne( list(permutation), L, i, j + 1, n ), ParcoursEnProfondeurAmeliore.parcoursEnProfondeurRec( list(permutation), L, i + 1,  n ) )
+                    return Liste.concatene( ParcoursEnProfondeurAmeliore.parcoursLigne( list(permutation), L, i, j + 1, matriceDeCollision, n ), ParcoursEnProfondeurAmeliore.parcoursEnProfondeurRec( list(permutation), L, i + 1, nouvelleMatriceDeCollision, n ) )
         else:
             if j != n - 1:
                 #retourne les solutions en déplacant le dernier pion selon j
-                return ParcoursEnProfondeurAmeliore.parcoursLigne( list(permutation), L, i, j + 1, n )
+                return ParcoursEnProfondeurAmeliore.parcoursLigne( list(permutation), L, i, j + 1, matriceDeCollision, n )
         return []
         
-    def parcoursEnProfondeurRec(permutation, L, i, n):
+    def parcoursEnProfondeurRec(permutation, L, i, matriceDeCollision, n):
         ''' fonction récursive pour le parcours en profondeur
         - permutation : solution partielle étudiée
         - L : liste des indices dans l'ordre de remplissage
         - i : nombre de lignes déjà remplies
         - n : taille de l'échiquier'''
-        minNombrePlacement = n
+        minNombrePlacement = n+1
         # cherche la ligne possédant le moins de placements viables pour un pion
         for j in range(i,n):        
-            nombrePlacement = Fonctions.test3( permutation, L, i, L[j], n )
+            nombrePlacement = Fonctions.test3( matriceDeCollision, int(L[j]), n )
             if (minNombrePlacement > nombrePlacement):
                 minNombrePlacement = nombrePlacement
                 ligneMinimale = j
@@ -54,7 +56,7 @@ class ParcoursEnProfondeurAmeliore(Fonctions):
             return []
         #met à jour la liste des indices considérés
         (L[i],L[ligneMinimale]) = (L[ligneMinimale], L[i])
-        return ParcoursEnProfondeurAmeliore.parcoursLigne(permutation, L, i, 0, n)
+        return ParcoursEnProfondeurAmeliore.parcoursLigne(permutation, L, i, 0, matriceDeCollision, n)
         
     
     
@@ -63,9 +65,11 @@ class ParcoursEnProfondeurAmeliore(Fonctions):
         - n : taille de l'échiquier '''
         permutation = np.zeros( n )
         L = np.linspace(0,n-1,n)
-        return( ParcoursEnProfondeurAmeliore.parcoursLigne( permutation, L, 0, 0, n) )
+        matriceDeCollision = np.zeros((n,n))
+        return( ParcoursEnProfondeurAmeliore.parcoursLigne( permutation, L, 0, 0, matriceDeCollision, n) )
 
     algorithme = staticmethod(algorithme)
     parcoursEnProfondeurRec = staticmethod(parcoursEnProfondeurRec)
     parcoursLigne = staticmethod(parcoursLigne)
     
+print( len(ParcoursEnProfondeurAmeliore.algorithme(9)) )

@@ -31,20 +31,14 @@ class Fonctions:
         return True
     
     
-    def test3( permutation, L, i, j, n):
-        '''teste le nombre de placements viables sur la j-ème ligne
-        - permutation : permutation à vérifier
-        - L : liste des indices à vérifier
-        - i : nombre de lignes remplies
-        - j : ligne où compter le nombre de placements viables
+    def test3( matriceDeCollision, i, n):
+        '''teste le nombre de placements viables sur la i-ème ligne
+        - matriceDeCollision : matrice indiquant les cases menacées où occupées par une dame
+        - i : ligne où compter le nombre de placements viables
         - n : taille de l'échiquier'''
         compteur = 0
         for k in range(n):
-            placementViable = True
-            for l in range(i):
-                if ( k == permutation[ int(L[l]) ] or abs( j - int(L[l]) ) == abs( abs( k )-abs( permutation[ int(L[l]) ] ) ) ):      #int car probleme de float  
-                    placementViable = False
-            if placementViable:
+            if ( matriceDeCollision[i][k] == 1 ) :
                 compteur = compteur + 1
         return compteur
         
@@ -57,6 +51,20 @@ class Fonctions:
             if  int(L[k]) != int(L[i]) and ( permutation[ int(L[k]) ] == permutation[ int(L[i]) ] or abs( int(L[k]) - int(L[i]) ) == abs( abs( permutation[ int(L[k]) ] )-abs( permutation[ int(L[i]) ] ) ) ): #int car probleme de float     
                 return False
         return True
+    
+    def miseAJourCollisions( i, j, matriceCollision, n ):
+        ''' met à jour la matrice de collision M selon L sachant que une dame en (i,j) a été ont été ajoutée
+        - listePermutation : permutation actuelle
+        - i,j coordonnées de la nouvelle dame
+        - matriceCollision : matrice de transposition
+        - n : taille de l'échiquier'''
+        for k in range(n):
+            matriceCollision[k][j] = 1
+            matriceCollision[i][k] = 1
+            if ( j - i + k >= 0 ) and  (j - i + k < n):
+                matriceCollision[k][j-i+k] = 1
+            if ( j + i - k >= 0 ) and  (j + i - k < n):
+                matriceCollision[k][j+i-k] = 1
         
         
     def nextPermutationSJT(permutation, n):
@@ -86,6 +94,7 @@ class Fonctions:
     test2 = staticmethod(test2)
     test3 = staticmethod(test3)
     test4 = staticmethod(test4)
+    miseAJourCollisions = staticmethod(miseAJourCollisions)
     nextPermutationSJT = staticmethod(nextPermutationSJT)
     
     
