@@ -16,6 +16,7 @@ class ParcoursEnProfondeurAmeliore(Fonctions):
         - L : liste des indices dans l'ordre de remplissage
         - i : nombre de lignes déjà remplies
         - j : colonne à tester
+        - matriceDeCollision : matrice indiquant les zones occupées ou menacées par une reine
         - n : taille de l'échiquier'''
         permutation[ int(L[i]) ] = j #int car probleme de float
         if Fonctions.test4( permutation, L, i):
@@ -43,6 +44,7 @@ class ParcoursEnProfondeurAmeliore(Fonctions):
         - permutation : solution partielle étudiée
         - L : liste des indices dans l'ordre de remplissage
         - i : nombre de lignes déjà remplies
+        - matriceDeCollision : matrice indiquant les zones occupées ou menacées par une reine
         - n : taille de l'échiquier'''
         minNombrePlacement = n+1
         # cherche la ligne possédant le moins de placements viables pour un pion
@@ -72,4 +74,3 @@ class ParcoursEnProfondeurAmeliore(Fonctions):
     parcoursEnProfondeurRec = staticmethod(parcoursEnProfondeurRec)
     parcoursLigne = staticmethod(parcoursLigne)
     
-print( len(ParcoursEnProfondeurAmeliore.algorithme(9)) )

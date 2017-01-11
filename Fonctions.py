@@ -43,7 +43,7 @@ class Fonctions:
         return compteur
         
     def test4( permutation, L, i):
-        ''' teste les conflits d'une permutation sur la j-ème ligne
+        ''' teste les conflits d'une permutation sur la i-ème ligne
         - permutation : permutation à vérifier
         - L : liste des indices dans l'ordre de remplissage
         - i : nombre de lignes remplies'''
